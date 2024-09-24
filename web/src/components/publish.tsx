@@ -76,7 +76,7 @@ const SUPPORTED_HEIGHT = [240, 360, 480, 720, 1080, 1440]
 const SUPPORTED_FPS = [15, 30, 60]
 
 const DEFAULT_HEIGHT = 480
-const DEFAULT_FPS = 30
+const DEFAULT_FPS = 60
 
 export default function Publish() {
 	// Use query params to allow overriding environment variables.
@@ -374,14 +374,14 @@ function Device(props: {
 		setMode("display")
 		setDevice(undefined)
 		props.setDeviceLoading(true)
-		const orient = orientation()
+		//const orient = orientation()
 		const videoTrackConstraints: MediaTrackConstraints = {
 			height: { ideal: DEFAULT_HEIGHT }, // max not supported
 			frameRate: { ideal: DEFAULT_FPS }, // max not supported
 		}
-		if (orient.landscape) {
-			videoTrackConstraints.aspectRatio = { ideal: 16 / 9 }
-		}
+		//if (orient.landscape) {
+		//	videoTrackConstraints.aspectRatio = { ideal: 16 / 9 }
+		//}
 		navigator.mediaDevices
 			.getDisplayMedia({
 				audio: {
@@ -609,7 +609,7 @@ function Video(props: {
 	// Default values
 	const [height, setHeight] = createSignal(0) // use track default
 	const [fps, setFps] = createSignal(0) // use fps default
-	const [bitrate, setBitrate] = createSignal(2_000_000)
+	const [bitrate, setBitrate] = createSignal(1_000_000)
 	const [codec, setCodec] = createSignal("")
 	const [profile, setProfile] = createSignal("")
 	const [supported, setSupported] = createSignal<VideoCodec[]>()
